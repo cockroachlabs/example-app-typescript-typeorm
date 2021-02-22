@@ -1,12 +1,10 @@
-import {Entity, PrimaryColumn, Column} from "typeorm";
+import { Entity, PrimaryColumn, Column } from "typeorm";
 
 @Entity()
 export class Account {
+  @PrimaryColumn()
+  id: number;
 
-    @PrimaryColumn()
-    id: number;
-
-    @Column()
-    balance: number;
-
+  @Column()
+  balance: number;
 }

@@ -8,15 +8,15 @@ To run the code:
 
 1. From the SQL client:
 
-    ~~~ sql
-    > GRANT ALL ON DATABASE bank TO user;
-    ~~~
+   ```sql
+   > GRANT ALL ON DATABASE bank TO user;
+   ```
 
 1. If necessary, update the `ormconfig.json` file with the correct connection values.
 
 1. In your terminal, from the top of this project directory:
 
-    ~~~ shell
-    $ npm i
-    $ npm start
-    ~~~
+   ```shell
+   $ npm i
+   $ npm start
+   ```
