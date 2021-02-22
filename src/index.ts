@@ -20,14 +20,14 @@ async function printBalance(repository, id: number) {
 
   console.log("Printing balances from account " + id + ".");
 
-  let account = await repository.findOne(id);
+  const account = await repository.findOne(id);
 
   console.log(account);
 }
 
 async function transferFunds(repository, amount: number, from: number, to: number) {
 
-  console.log("Transferring " + amount + " from account " + from + " to account " + to + ".");
+  console.log(`Transferring ${amount} from account ${from} to account ${to}.`);
 
   let accountFrom = await repository.findOne(from);
   accountFrom.balance = accountFrom.balance - amount;
@@ -42,7 +42,7 @@ async function transferFunds(repository, amount: number, from: number, to: numbe
 
 createConnection().then(async connection => {
 
-    let accountRepository = await connection.getRepository(Account);
+    const accountRepository = await connection.getRepository(Account);
 
     await insertAccount(accountRepository, 1, 1000);
     await printBalance(accountRepository, 1);
