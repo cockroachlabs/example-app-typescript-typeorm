@@ -1,10 +1,10 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
 
 @Entity()
-export class Account {
+export class TableName {
   @PrimaryColumn()
-  id: number;
+  primaryKeyColumnName: number;
 
   @Column()
-  balance: number;
+  columnName: number;
 }

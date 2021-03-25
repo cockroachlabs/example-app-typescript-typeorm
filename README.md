@@ -2,14 +2,14 @@ This repo contains an example "Hello World" TypeScript application that uses the
 
 To run the code:
 
-1. Start a [demo CockroachDB cluster](https://www.cockroachlabs.com/docs/stable/cockroach-demo.html) from the command line: `cockroach demo --empty`
+1. Create a Cockroach Cloud account as described in LINK TO BIZZLEBEE CHAPTER.
 
-1. Create a `bank` database and a user and password as described in [Build a TypeScript App with CockroachDB](https://www.cockroachlabs.com/docs/stable/build-a-typescript-app-with-cockroachdb.html).
+1. Create a database and a user and password as described in LINK TO BIZZLEBEE CHAPTER.
 
 1. From the SQL client:
 
    ```sql
-   > GRANT ALL ON DATABASE bank TO user;
+   > GRANT ALL ON DATABASE databasename TO username;
    ```
 
 1. If necessary, update the `ormconfig.json` file with the correct connection values.

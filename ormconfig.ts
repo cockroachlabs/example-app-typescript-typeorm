@@ -5,9 +5,9 @@ module.exports = {
   type: "cockroachdb",
   host: "localhost",
   port: 26257,
-  username: "max",
-  password: "roach",
-  database: "bank",
+  username: "username",
+  password: "password",
+  database: "databasename",
   ssl: true,
   extra: {
     ssl: {
