@@ -1,23 +1,18 @@
 //For secure connection:
-//import * as fs from "fs";
+import * as fs from "fs";
 
 module.exports = {
   type: "cockroachdb",
-  host: "localhost",
+  host: "free-tier.gcp-us-central1.cockroachlabs.cloud",
   port: 26257,
-  username: "max",
-  password: "roach",
-  database: "bank",
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
+  username: "amruta",
+  password: "kwA4RXrV4q-_ylhK",
+  database: "fast-lion-2374.vault",
+  
   //For secure connection:
-  /*ssl: {
-     ca: fs.readFileSync('certs/cc-ca.crt').toString()
-   },*/
+  ssl: {
+     ca: fs.readFileSync('/users/amruta_ranade/downloads/cc-ca.crt').toString()
+   },
   synchronize: true,
   logging: false,
   entities: ["src/entity/**/*.ts"],
