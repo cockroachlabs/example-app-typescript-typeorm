@@ -7,4 +7,7 @@ export class Account {
 
   @Column()
   balance: number;
+
+  @Column({nullable: true, default: null })
+  color: string;
 }
