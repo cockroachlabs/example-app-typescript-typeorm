@@ -3,15 +3,15 @@ import * as fs from "fs";
 
 module.exports = {
   type: "cockroachdb",
-  host: "free-tier.gcp-us-central1.cockroachlabs.cloud",
+  host: "hostname",
   port: 26257,
-  username: "amruta",
-  password: "kwA4RXrV4q-_ylhK",
-  database: "fast-lion-2374.vault",
+  username: "username",
+  password: "password",
+  database: "databasename",
   
   //For secure connection:
   ssl: {
-     ca: fs.readFileSync('/users/amruta_ranade/downloads/cc-ca.crt').toString()
+     ca: fs.readFileSync('path_to_ca_crt/cc-ca.crt').toString()
    },
   synchronize: true,
   logging: false,
