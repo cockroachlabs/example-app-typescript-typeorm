@@ -1,23 +1,23 @@
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 import { Account } from "./entity/Account";
+import { AppDataSource } from "./datasource";
 
-async function insertAccount(repository, id: number, balance: number) {
+async function insertAccount(repository, balance: number) {
   console.log("Inserting a new account into the database...");
 
   let account = new Account();
-  account.id = id;
   account.balance = balance;
 
   await repository.save(account);
 
   console.log("Saved a new account.");
+  return account.id;
 }
 
-async function printBalance(repository, id: number) {
+async function printBalance(repository, id: string) {
   console.log("Printing balances from account " + id + ".");
 
-  const account = await repository.findOne(id);
+  const account = await repository.find({where: {id: id}});
 
   console.log(account);
 }
@@ -25,34 +25,34 @@ async function printBalance(repository, id: number) {
 async function transferFunds(
   repository,
   amount: number,
-  from: number,
-  to: number
+  from: string,
+  to: string
 ) {
   console.log(`Transferring ${amount} from account ${from} to account ${to}.`);
 
-  let accountFrom = await repository.findOne(from);
+  let accountFrom = await repository.find({where: {id: from}});
   accountFrom.balance = accountFrom.balance - amount;
   await repository.save(accountFrom);
 
-  let accountTo = await repository.findOne(to);
+  let accountTo = await repository.find({where: {id: to}});
   accountTo.balance = accountTo.balance + amount;
   await repository.save(accountTo);
 
   console.log("Transfer complete.");
 }
 
-createConnection()
-  .then(async (connection) => {
-    const accountRepository = await connection.getRepository(Account);
+AppDataSource.initialize()
+  .then(async () => {
+    const accountRepository = await AppDataSource.getRepository(Account);
 
-    await insertAccount(accountRepository, 1, 1000);
-    await printBalance(accountRepository, 1);
+    const accountOne = await insertAccount(accountRepository, 1000);
+    await printBalance(accountRepository, accountOne);
 
-    await insertAccount(accountRepository, 2, 250);
-    await printBalance(accountRepository, 2);
+    const accountTwo = await insertAccount(accountRepository, 250);
+    await printBalance(accountRepository, accountTwo);
 
-    await transferFunds(accountRepository, 500, 1, 2);
-    await printBalance(accountRepository, 1);
-    await printBalance(accountRepository, 2);
+    await transferFunds(accountRepository, 500, accountOne, accountTwo);
+    await printBalance(accountRepository, accountOne);
+    await printBalance(accountRepository, accountTwo);
   })
   .catch((error) => console.log(error));
