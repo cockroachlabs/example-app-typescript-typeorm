@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
     ssl: true,
     extra: {
         options: "--cluster=<routing-id>",
-        application_name: "docs_simplecrud_knex"
+        application_name: "docs_simplecrud_typeorm"
     },
     synchronize: true,
     logging: false,
