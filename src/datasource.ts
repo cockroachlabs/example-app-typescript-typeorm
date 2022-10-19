@@ -7,7 +7,8 @@ export const AppDataSource = new DataSource({
     /*ssl: { rejectUnauthorized: false }, // For insecure connections only */
     ssl: true,
     extra: {
-        options: "--cluster=<routing-id>"
+        options: "--cluster=<routing-id>",
+        application_name: "docs_simplecrud_knex"
     },
     synchronize: true,
     logging: false,
